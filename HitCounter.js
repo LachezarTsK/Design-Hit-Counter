@@ -7,7 +7,7 @@ function Pair(timestamp = 0, numberOfHits = 0) {
 }
 
 var HitCounter = function () {
-    const TIMESPAN_TO_COUNT_HITS_IN_SECONDS = 300;
+    this.TIMESPAN_TO_COUNT_HITS_IN_SECONDS = 300;
     this.head_queuePair = null;
     this.tail_queuePair = null;
     this.totalHits = 0;
@@ -38,8 +38,8 @@ HitCounter.prototype.hit = function (timestamp) {
  */
 HitCounter.prototype.getHits = function (timestamp) {
 
-    let maxTimestampDifference = (timestamp - TIMESPAN_TO_COUNT_HITS_IN_SECONDS + 1) > 0 ? 
-                                 (timestamp - TIMESPAN_TO_COUNT_HITS_IN_SECONDS + 1) : 0;
+    let maxTimestampDifference = (timestamp - this.TIMESPAN_TO_COUNT_HITS_IN_SECONDS + 1) > 0 ? 
+                                 (timestamp - this.TIMESPAN_TO_COUNT_HITS_IN_SECONDS + 1) : 0;
 
     while (this.head_queuePair !== null) {
         if (this.head_queuePair.timestamp < maxTimestampDifference) {
